@@ -1,0 +1,52 @@
+***Create bundleApp on Flutter project
+
+1. Change applicationID. Go to app/bundle.gradle/ 
+ applicationId "com.cheauy.snap_pos,
+
+2. Create name file 'key.properties' in andorid/ folder
+
+storePassword=<setup password>
+keyPassword=<setup passwordp>
+keyAlias=upload
+storeFile=<and copy path of upload-keystore.jks>
+
+** Copy this and paste inside key.properties file:
+
+3. Run the following command at the command line:
+
+keytool -genkey -v -keystore $env:USERPROFILE\upload-keystore.jks `
+        -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 `
+        -alias upload
+
+**And complete password and name  after that find and  copy ' upload-keystore.jks ' file and paste to android/app/
+
+4.Go to /android/app/build.gradle  copy and Paste this outside android {}block
+
+ def keystoreProperties = new Properties()
+    def keystorePropertiesFile = rootProject.file('key.properties')
+    if (keystorePropertiesFile.exists()) {
+        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+    }
+
+* after that  remove buildTypes {} block copy and paste inside android{} block
+
+ signingConfigs {
+
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
+        }
+    }
+
+5. Run flutter build appbundle --release
+6. find bundle file [flutter_project_folder]\build\app\outputs\bundle\release
