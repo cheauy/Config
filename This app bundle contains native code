@@ -1,0 +1,4 @@
+***This app bundle contains native code*****
+1. Go to Flutter_project_folder \build\app\intermediates\merged_native_libs\release\out\lib 
+2. Compress all folder to Zip file,
+3. and upload in Native debug symbols at play google release detail
