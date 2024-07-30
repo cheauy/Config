@@ -1,0 +1,26 @@
+1.Download git https://git-scm.com/downloads
+****Add folder project to github****
+2 Click on project_folder Open as Open Git Bash Here
++ Run Command
+Step 1. git init
+Step 2. git status
+Step 3. git add -A
+Step 4. git status
+Step 5. git commit -m "Example Project"
+Step 6. Go to github.com and Create Repository name
+Step 7. back to cmd and run ' git remote add origin https://github.com/example/exampleproject.app '
+Last step. git push -u origin master
+
+****Update​ github****
+1. Click on project_folder Open as Open Git Bash Here
+Step 1. git status  
+Step 2. git add .
+Step 3. git status
+Step 4. git commit -m "second commit"
+Step 5. git push
+
+Using Github Destop
+1. Download github https://github.com/apps/desktop
+2. File> Add local repository> Choose_project_folder
+3. on Summary required enter "commit change" and click commit to master
+4. Public
